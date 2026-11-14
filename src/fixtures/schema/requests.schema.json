@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcpsd:schema:requests",
+  "title": "requests.json ({ requests: RequestFixture[]; appointment_slots: AppointmentSlot[] })",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["requests", "appointment_slots"],
+  "properties": {
+    "requests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "requester", "state", "created_at", "csr", "appointment_id", "kind"],
+        "properties": {
+          "id": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" },
+          "requester": { "$ref": "urn:pcpsd:schema:common#/$defs/personaId" },
+          "state": { "enum": ["draft", "submitted", "awaitingInPerson", "approved", "rejected", "expired"] },
+          "created_at": { "$ref": "urn:pcpsd:schema:common#/$defs/instant" },
+          "csr": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["subject_cn", "email", "key_alg", "key_size", "pop_valid", "extra_extensions", "key_previously_used"],
+            "properties": {
+              "subject_cn": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" },
+              "email": { "type": "string", "pattern": "^[a-z0-9.-]+@lab\\.korakod\\.dev$" },
+              "key_alg": { "enum": ["ECDSA-P256", "ECDSA-P384", "RSA"] },
+              "key_size": { "type": "integer", "minimum": 1 },
+              "pop_valid": { "type": "boolean" },
+              "extra_extensions": { "type": "array", "items": { "type": "string" } },
+              "key_previously_used": { "type": "boolean" }
+            }
+          },
+          "appointment_id": { "type": ["string", "null"] },
+          "kind": { "enum": ["new", "renewal"] }
+        }
+      }
+    },
+    "appointment_slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "at", "location_th"],
+        "properties": {
+          "id": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" },
+          "at": { "$ref": "urn:pcpsd:schema:common#/$defs/instant" },
+          "location_th": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" }
+        }
+      }
+    }
+  }
+}

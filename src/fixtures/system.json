@@ -1,0 +1,34 @@
+{
+  "epoch": "2026-11-12T09:00:00+07:00",
+  "site_name": "Private CA · ลายมือชื่อดิจิทัล (โหมดสาธิต)",
+  "org": "O=Korakod Lab DEMO, C=TH",
+  "host": "pki-demo.korakod.dev",
+  "limits": {
+    "pdf_max_bytes": 20971520,
+    "pdf_max_pages": 200,
+    "queue_max": 20,
+    "verify_rate_per_min": 10,
+    "archive_quota_bytes_user": 524288000,
+    "archive_quota_bytes_total": 10737418240
+  },
+  "lifetimes": {
+    "user_cert_days": 365,
+    "request_days": 14,
+    "archive_years": 5,
+    "ocsp_signer_days": 30,
+    "ocsp_rotate_days": 14
+  },
+  "schedule": {
+    "crl_hour": 6,
+    "crl_next_update_days": 7,
+    "retimestamp_hour": 3,
+    "backup_hour": 2
+  },
+  "demo_mfa": "246810",
+  "demo_password": "demo-password",
+  "demo_p12_password": "demo-p12-password",
+  "lockout": {
+    "max_failures": 3,
+    "minutes": 5
+  }
+}

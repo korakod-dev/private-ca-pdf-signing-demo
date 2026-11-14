@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcpsd:schema:certs",
+  "title": "certs.json (CertFixture[])",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["serial", "holder", "subject", "issuer_ca", "not_before", "not_after", "state", "revoked_at", "revocation_reason", "invalidity_date", "superseded_by"],
+    "properties": {
+      "serial": { "$ref": "urn:pcpsd:schema:common#/$defs/certSerial" },
+      "holder": {
+        "anyOf": [{ "$ref": "urn:pcpsd:schema:common#/$defs/personaId" }, { "type": "null" }]
+      },
+      "subject": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" },
+      "issuer_ca": {
+        "anyOf": [{ "$ref": "urn:pcpsd:schema:common#/$defs/caId" }, { "type": "null" }]
+      },
+      "untrusted_fixture": { "const": true },
+      "not_before": { "$ref": "urn:pcpsd:schema:common#/$defs/instant" },
+      "not_after": { "$ref": "urn:pcpsd:schema:common#/$defs/instant" },
+      "state": { "enum": ["Requested", "Issued", "Active", "Revoked", "Expired", "Rejected", "ExpiredRequest"] },
+      "revoked_at": {
+        "anyOf": [{ "$ref": "urn:pcpsd:schema:common#/$defs/instant" }, { "type": "null" }]
+      },
+      "revocation_reason": {
+        "anyOf": [{ "$ref": "urn:pcpsd:schema:common#/$defs/revocationReason" }, { "type": "null" }]
+      },
+      "invalidity_date": {
+        "anyOf": [{ "$ref": "urn:pcpsd:schema:common#/$defs/instant" }, { "type": "null" }]
+      },
+      "superseded_by": {
+        "anyOf": [{ "$ref": "urn:pcpsd:schema:common#/$defs/demoSerial" }, { "type": "null" }]
+      }
+    },
+    "if": { "properties": { "serial": { "const": "01" } }, "required": ["serial"] },
+    "then": {
+      "$comment": "Only the D06 self-signed cert may use serial 01: it must be flagged untrusted_fixture, have no holder and no issuer.",
+      "required": ["untrusted_fixture"],
+      "properties": { "holder": { "type": "null" }, "issuer_ca": { "type": "null" } }
+    },
+    "else": {
+      "$comment": "Every other cert has a DE:M0 serial and must not carry the untrusted marker.",
+      "properties": { "serial": { "$ref": "urn:pcpsd:schema:common#/$defs/demoSerial" } },
+      "not": { "required": ["untrusted_fixture"] }
+    }
+  }
+}

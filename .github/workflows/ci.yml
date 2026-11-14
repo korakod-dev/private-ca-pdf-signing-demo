@@ -1,0 +1,56 @@
+# CI for private-ca-pdf-signing-demo.
+# CI runs lint, typecheck, tests, build and e2e on GitHub-hosted runners. Deploy is done via Cloudflare Pages outside CI.
+# Action versions: major tags checked against the latest GitHub releases on 2026-11-13 (not pinned to SHAs).
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run check:fixtures
+      - run: npm run check:content
+      - run: npm run build
+      - run: npm run audit
+
+  e2e:
+    runs-on: ubuntu-latest
+    needs: lint-test
+    steps:
+      - uses: actions/checkout@v7
+      # Same Node major as lint-test (package.json engines: >=22); cypress-io/github-action uses the runner's node.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - uses: cypress-io/github-action@v7
+        with:
+          build: npm run build
+          start: npm run preview
+          wait-on: 'http://localhost:4173'
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: cypress-failures
+          path: |
+            cypress/screenshots
+            cypress/videos
+          if-no-files-found: ignore
+
+  # No deploy job on purpose: deploy is done via Cloudflare Pages outside CI.

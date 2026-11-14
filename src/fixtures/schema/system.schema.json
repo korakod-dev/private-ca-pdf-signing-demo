@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcpsd:schema:system",
+  "title": "system.json (SystemConstants)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["epoch", "site_name", "org", "host", "limits", "lifetimes", "schedule", "demo_mfa", "demo_password", "demo_p12_password", "lockout"],
+  "properties": {
+    "epoch": { "$ref": "urn:pcpsd:schema:common#/$defs/instant" },
+    "site_name": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" },
+    "org": { "type": "string", "pattern": "DEMO" },
+    "host": { "const": "pki-demo.korakod.dev" },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pdf_max_bytes", "pdf_max_pages", "queue_max", "verify_rate_per_min", "archive_quota_bytes_user", "archive_quota_bytes_total"],
+      "properties": {
+        "pdf_max_bytes": { "type": "integer", "minimum": 1 },
+        "pdf_max_pages": { "type": "integer", "minimum": 1 },
+        "queue_max": { "type": "integer", "minimum": 1 },
+        "verify_rate_per_min": { "type": "integer", "minimum": 1 },
+        "archive_quota_bytes_user": { "type": "integer", "minimum": 1 },
+        "archive_quota_bytes_total": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "lifetimes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["user_cert_days", "request_days", "archive_years", "ocsp_signer_days", "ocsp_rotate_days"],
+      "properties": {
+        "user_cert_days": { "const": 365 },
+        "request_days": { "const": 14 },
+        "archive_years": { "const": 5 },
+        "ocsp_signer_days": { "const": 30 },
+        "ocsp_rotate_days": { "const": 14 }
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["crl_hour", "crl_next_update_days", "retimestamp_hour", "backup_hour"],
+      "properties": {
+        "crl_hour": { "const": 6 },
+        "crl_next_update_days": { "const": 7 },
+        "retimestamp_hour": { "const": 3 },
+        "backup_hour": { "const": 2 }
+      }
+    },
+    "demo_mfa": { "const": "246810" },
+    "demo_password": { "const": "demo-password" },
+    "demo_p12_password": { "const": "demo-p12-password" },
+    "lockout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_failures", "minutes"],
+      "properties": {
+        "max_failures": { "const": 3 },
+        "minutes": { "const": 5 }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+# Cloudflare Pages response headers (applies to every path of the built site).
+# frame-ancestors cannot be set through the CSP <meta> tag in index.html (browsers ignore it there),
+# so it is sent as a real header here, together with the anti-framing legacy header.
+# Only effective on Cloudflare Pages; `vite preview` and other hosts ignore this file.
+/*
+  Content-Security-Policy: frame-ancestors 'none'
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  X-Content-Type-Options: nosniff

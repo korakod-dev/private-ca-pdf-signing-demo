@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcpsd:schema:mail",
+  "title": "mail.json (MailFixture[])",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["id", "to", "at", "kind", "subject_th", "body_th"],
+    "properties": {
+      "id": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" },
+      "to": { "$ref": "urn:pcpsd:schema:common#/$defs/personaId" },
+      "at": { "$ref": "urn:pcpsd:schema:common#/$defs/instant" },
+      "kind": { "enum": ["email_verify", "approved", "rejected", "expiry_notice", "archive_notice", "archive_deleted"] },
+      "subject_th": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" },
+      "body_th": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" }
+    }
+  }
+}

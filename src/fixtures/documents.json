@@ -1,0 +1,587 @@
+[
+  {
+    "id": "D01",
+    "file_name": "memo-118.signed.pdf",
+    "title_th": "บันทึกข้อความ 118 (เซ็นครบ 2 คน)",
+    "scenario_th": "เซ็น 2 คน B-LTA ครบ",
+    "pages": 2,
+    "size_bytes": 184320,
+    "encrypted": false,
+    "sha256": "de0079b058627d51d595b76bbc1b32d01810489f131b9c8e8166b3701da4fc50",
+    "previews": [
+      "/previews/D01-p1.svg",
+      "/previews/D01-p2.svg"
+    ],
+    "signature_fields": [
+      "approver-1",
+      "approver-2"
+    ],
+    "signatures": [
+      {
+        "id": "D01-sig1",
+        "field": "approver-1",
+        "type": "certification",
+        "signer_cert_serial": "DE:M0:4F:2A:91:01",
+        "claimed_signing_time": "2026-10-20T09:55:00+07:00",
+        "signature_timestamp": {
+          "time": "2026-10-20T10:00:00+07:00",
+          "tsa_serial": "DE:M0:00:00:00:03"
+        },
+        "level": "B-LTA",
+        "purpose": 3
+      },
+      {
+        "id": "D01-sig2",
+        "field": "approver-2",
+        "type": "approval",
+        "signer_cert_serial": "DE:M0:6B:D0:22:02",
+        "claimed_signing_time": "2026-10-21T13:55:00+07:00",
+        "signature_timestamp": {
+          "time": "2026-10-21T14:00:00+07:00",
+          "tsa_serial": "DE:M0:00:00:00:03"
+        },
+        "level": "B-LTA",
+        "purpose": 1
+      }
+    ],
+    "doc_timestamps": [
+      {
+        "time": "2026-10-21T14:05:00+07:00",
+        "tsa_serial": "DE:M0:00:00:00:03"
+      }
+    ],
+    "modification_after_last_signature": null,
+    "refs": [
+      "V3"
+    ],
+    "expected": {
+      "http_status": 200,
+      "indication": "TOTAL-PASSED",
+      "sub_indication": null,
+      "code": "VALID",
+      "problem_code": null,
+      "warnings": []
+    }
+  },
+  {
+    "id": "D02",
+    "file_name": "memo-118-tampered.pdf",
+    "title_th": "บันทึกข้อความ 118 (ถูกแก้ไข)",
+    "scenario_th": "แก้ content stream หลังลายเซ็นสุดท้าย",
+    "pages": 2,
+    "size_bytes": 185344,
+    "encrypted": false,
+    "sha256": "de00a4753ad77ecedf38dd5a9ddfff7ff5f62043e813ba6c34d1ca93dcb4445a",
+    "previews": [
+      "/previews/D02-p1.svg",
+      "/previews/D02-p2.svg"
+    ],
+    "signature_fields": [
+      "approver-1",
+      "approver-2"
+    ],
+    "signatures": [
+      {
+        "id": "D02-sig1",
+        "field": "approver-1",
+        "type": "certification",
+        "signer_cert_serial": "DE:M0:4F:2A:91:01",
+        "claimed_signing_time": "2026-10-20T09:55:00+07:00",
+        "signature_timestamp": {
+          "time": "2026-10-20T10:00:00+07:00",
+          "tsa_serial": "DE:M0:00:00:00:03"
+        },
+        "level": "B-LTA",
+        "purpose": 3
+      },
+      {
+        "id": "D02-sig2",
+        "field": "approver-2",
+        "type": "approval",
+        "signer_cert_serial": "DE:M0:6B:D0:22:02",
+        "claimed_signing_time": "2026-10-21T13:55:00+07:00",
+        "signature_timestamp": {
+          "time": "2026-10-21T14:00:00+07:00",
+          "tsa_serial": "DE:M0:00:00:00:03"
+        },
+        "level": "B-LTA",
+        "purpose": 1
+      }
+    ],
+    "doc_timestamps": [
+      {
+        "time": "2026-10-21T14:05:00+07:00",
+        "tsa_serial": "DE:M0:00:00:00:03"
+      }
+    ],
+    "modification_after_last_signature": {
+      "kind": "content_stream",
+      "docmdp_permitted": false
+    },
+    "refs": [
+      "V5",
+      "5"
+    ],
+    "expected": {
+      "http_status": 200,
+      "indication": "TOTAL-FAILED",
+      "sub_indication": null,
+      "code": "MODIFIED",
+      "problem_code": null,
+      "warnings": []
+    }
+  },
+  {
+    "id": "D03",
+    "file_name": "memo-118-formfill.pdf",
+    "title_th": "บันทึกข้อความ 118 (กรอกฟอร์มหลังเซ็น)",
+    "scenario_th": "กรอกฟอร์มหลังเซ็น (DocMDP P=2 อนุญาต แต่ strict-v1 ไม่อนุญาต)",
+    "pages": 2,
+    "size_bytes": 186368,
+    "encrypted": false,
+    "sha256": "de00c7308c6690bb63ce7370e696ab1aaad8b235b949f49249f57a490166e387",
+    "previews": [
+      "/previews/D03-p1.svg",
+      "/previews/D03-p2.svg"
+    ],
+    "signature_fields": [
+      "approver-1",
+      "approver-2"
+    ],
+    "signatures": [
+      {
+        "id": "D03-sig1",
+        "field": "approver-1",
+        "type": "certification",
+        "signer_cert_serial": "DE:M0:4F:2A:91:01",
+        "claimed_signing_time": "2026-10-20T09:55:00+07:00",
+        "signature_timestamp": {
+          "time": "2026-10-20T10:00:00+07:00",
+          "tsa_serial": "DE:M0:00:00:00:03"
+        },
+        "level": "B-LTA",
+        "purpose": 3
+      },
+      {
+        "id": "D03-sig2",
+        "field": "approver-2",
+        "type": "approval",
+        "signer_cert_serial": "DE:M0:6B:D0:22:02",
+        "claimed_signing_time": "2026-10-21T13:55:00+07:00",
+        "signature_timestamp": {
+          "time": "2026-10-21T14:00:00+07:00",
+          "tsa_serial": "DE:M0:00:00:00:03"
+        },
+        "level": "B-LTA",
+        "purpose": 1
+      }
+    ],
+    "doc_timestamps": [
+      {
+        "time": "2026-10-21T14:05:00+07:00",
+        "tsa_serial": "DE:M0:00:00:00:03"
+      }
+    ],
+    "modification_after_last_signature": {
+      "kind": "form_fill",
+      "docmdp_permitted": true
+    },
+    "refs": [
+      "V5"
+    ],
+    "expected": {
+      "http_status": 200,
+      "indication": "TOTAL-FAILED",
+      "sub_indication": null,
+      "code": "MODIFIED",
+      "problem_code": null,
+      "warnings": []
+    }
+  },
+  {
+    "id": "D04",
+    "file_name": "memo-121.signed.pdf",
+    "title_th": "บันทึกข้อความ 121",
+    "scenario_th": "ลายเซ็นที่ 2 ใช้ใบที่ถูกเพิกถอนก่อนเวลาลงนาม",
+    "pages": 2,
+    "size_bytes": 176128,
+    "encrypted": false,
+    "sha256": "de00f005fa0e961995bac2fad1ca09fedfa3a9719dfda63df962a40a14191f49",
+    "previews": [
+      "/previews/D04-p1.svg",
+      "/previews/D04-p2.svg"
+    ],
+    "signature_fields": [
+      "approver-1",
+      "approver-2"
+    ],
+    "signatures": [
+      {
+        "id": "D04-sig1",
+        "field": "approver-1",
+        "type": "certification",
+        "signer_cert_serial": "DE:M0:4F:2A:91:00",
+        "claimed_signing_time": "2026-09-11T09:55:00+07:00",
+        "signature_timestamp": {
+          "time": "2026-09-11T10:00:00+07:00",
+          "tsa_serial": "DE:M0:00:00:00:03"
+        },
+        "level": "B-LT",
+        "purpose": 3
+      },
+      {
+        "id": "D04-sig2",
+        "field": "approver-2",
+        "type": "approval",
+        "signer_cert_serial": "DE:M0:6B:D0:22:01",
+        "claimed_signing_time": "2026-09-11T10:55:00+07:00",
+        "signature_timestamp": {
+          "time": "2026-09-11T11:00:00+07:00",
+          "tsa_serial": "DE:M0:00:00:00:03"
+        },
+        "level": "B-LT",
+        "purpose": 1
+      }
+    ],
+    "doc_timestamps": [],
+    "modification_after_last_signature": null,
+    "refs": [
+      "R15"
+    ],
+    "expected": {
+      "http_status": 200,
+      "indication": "TOTAL-FAILED",
+      "sub_indication": "REVOKED",
+      "code": "REVOKED",
+      "problem_code": null,
+      "warnings": []
+    }
+  },
+  {
+    "id": "D05",
+    "file_name": "memo-122.signed.pdf",
+    "title_th": "บันทึกข้อความ 122",
+    "scenario_th": "ใบถูกเพิกถอนหลังเวลาลงนาม และมีตราประทับ",
+    "pages": 1,
+    "size_bytes": 150528,
+    "encrypted": false,
+    "sha256": "de005e61ba9bbe0dceae6073a614ad557cc3724866e3d72007413c66393f6c63",
+    "previews": [
+      "/previews/D05-p1.svg"
+    ],
+    "signature_fields": [
+      "approver-1",
+      "approver-2"
+    ],
+    "signatures": [
+      {
+        "id": "D05-sig1",
+        "field": "approver-1",
+        "type": "certification",
+        "signer_cert_serial": "DE:M0:4F:2A:91:00",
+        "claimed_signing_time": "2026-09-20T09:55:00+07:00",
+        "signature_timestamp": {
+          "time": "2026-09-20T10:00:00+07:00",
+          "tsa_serial": "DE:M0:00:00:00:03"
+        },
+        "level": "B-LTA",
+        "purpose": 3
+      }
+    ],
+    "doc_timestamps": [
+      {
+        "time": "2026-09-20T10:05:00+07:00",
+        "tsa_serial": "DE:M0:00:00:00:03"
+      }
+    ],
+    "modification_after_last_signature": null,
+    "refs": [
+      "Q3"
+    ],
+    "expected": {
+      "http_status": 200,
+      "indication": "TOTAL-PASSED",
+      "sub_indication": null,
+      "code": "VALID",
+      "problem_code": null,
+      "warnings": []
+    }
+  },
+  {
+    "id": "D06",
+    "file_name": "memo-123-selfsigned.pdf",
+    "title_th": "บันทึกข้อความ 123",
+    "scenario_th": "ลายเซ็นที่ 2 self-signed",
+    "pages": 2,
+    "size_bytes": 179200,
+    "encrypted": false,
+    "sha256": "de00018942ca598e655e0987ec6b05637298ef62f2c6052e0b62efb604e50482",
+    "previews": [
+      "/previews/D06-p1.svg",
+      "/previews/D06-p2.svg"
+    ],
+    "signature_fields": [
+      "approver-1",
+      "approver-2"
+    ],
+    "signatures": [
+      {
+        "id": "D06-sig1",
+        "field": "approver-1",
+        "type": "certification",
+        "signer_cert_serial": "DE:M0:4F:2A:91:01",
+        "claimed_signing_time": "2026-10-25T09:55:00+07:00",
+        "signature_timestamp": {
+          "time": "2026-10-25T10:00:00+07:00",
+          "tsa_serial": "DE:M0:00:00:00:03"
+        },
+        "level": "B-T",
+        "purpose": 3
+      },
+      {
+        "id": "D06-sig2",
+        "field": "approver-2",
+        "type": "approval",
+        "signer_cert_serial": "01",
+        "claimed_signing_time": "2026-10-25T10:30:00+07:00",
+        "signature_timestamp": null,
+        "level": "B-B",
+        "purpose": null
+      }
+    ],
+    "doc_timestamps": [],
+    "modification_after_last_signature": null,
+    "refs": [
+      "V6",
+      "E7"
+    ],
+    "expected": {
+      "http_status": 200,
+      "indication": "TOTAL-FAILED",
+      "sub_indication": "NO_CERTIFICATE_CHAIN_FOUND",
+      "code": "UNTRUSTED",
+      "problem_code": null,
+      "warnings": [
+        "MIXED_TRUST"
+      ]
+    }
+  },
+  {
+    "id": "D07",
+    "file_name": "memo-090.signed.pdf",
+    "title_th": "บันทึกข้อความ 090",
+    "scenario_th": "ใบหมดอายุแล้ว แต่มีตราประทับตอนใบยังใช้ได้",
+    "pages": 1,
+    "size_bytes": 143360,
+    "encrypted": false,
+    "sha256": "de007f48728e4e51f4b66b4e2fd3873febf66cccf42d6bb73bebe05b37c9a26f",
+    "previews": [
+      "/previews/D07-p1.svg"
+    ],
+    "signature_fields": [
+      "approver-1",
+      "approver-2"
+    ],
+    "signatures": [
+      {
+        "id": "D07-sig1",
+        "field": "approver-1",
+        "type": "certification",
+        "signer_cert_serial": "DE:M0:22:91:AF:02",
+        "claimed_signing_time": "2025-06-10T09:55:00+07:00",
+        "signature_timestamp": {
+          "time": "2025-06-10T10:00:00+07:00",
+          "tsa_serial": "DE:M0:00:00:00:03"
+        },
+        "level": "B-LTA",
+        "purpose": 3
+      }
+    ],
+    "doc_timestamps": [
+      {
+        "time": "2025-06-10T10:05:00+07:00",
+        "tsa_serial": "DE:M0:00:00:00:03"
+      }
+    ],
+    "modification_after_last_signature": null,
+    "refs": [
+      "V4"
+    ],
+    "expected": {
+      "http_status": 200,
+      "indication": "TOTAL-PASSED",
+      "sub_indication": null,
+      "code": "VALID",
+      "problem_code": null,
+      "warnings": []
+    }
+  },
+  {
+    "id": "D08",
+    "file_name": "memo-091-nots.pdf",
+    "title_th": "บันทึกข้อความ 091",
+    "scenario_th": "ใบหมดอายุ ไม่มีตราประทับ",
+    "pages": 1,
+    "size_bytes": 139264,
+    "encrypted": false,
+    "sha256": "de001cefdd7b841385faee09ebe320414254b840ecc49651d862c0b7c77c95c2",
+    "previews": [
+      "/previews/D08-p1.svg"
+    ],
+    "signature_fields": [
+      "approver-1",
+      "approver-2"
+    ],
+    "signatures": [
+      {
+        "id": "D08-sig1",
+        "field": "approver-1",
+        "type": "certification",
+        "signer_cert_serial": "DE:M0:6B:D0:22:00",
+        "claimed_signing_time": "2025-05-15T10:00:00+07:00",
+        "signature_timestamp": null,
+        "level": "B-B",
+        "purpose": 3
+      }
+    ],
+    "doc_timestamps": [],
+    "modification_after_last_signature": null,
+    "refs": [
+      "V4"
+    ],
+    "expected": {
+      "http_status": 200,
+      "indication": "INDETERMINATE",
+      "sub_indication": "NO_POE",
+      "code": "NO_POE",
+      "problem_code": null,
+      "warnings": []
+    }
+  },
+  {
+    "id": "D09",
+    "file_name": "notice-doc-timestamp-only.pdf",
+    "title_th": "ประกาศ (มีเฉพาะตราประทับเวลา)",
+    "scenario_th": "มีเฉพาะ document timestamp ไม่มีผู้ลงนาม",
+    "pages": 1,
+    "size_bytes": 120832,
+    "encrypted": false,
+    "sha256": "de001757b0ce1653ef0c9883dc24b7a34f002fe2e674d01b1a9b217243bc3639",
+    "previews": [
+      "/previews/D09-p1.svg"
+    ],
+    "signature_fields": [],
+    "signatures": [],
+    "doc_timestamps": [
+      {
+        "time": "2026-11-01T08:00:00+07:00",
+        "tsa_serial": "DE:M0:00:00:00:03"
+      }
+    ],
+    "modification_after_last_signature": null,
+    "refs": [
+      "V13"
+    ],
+    "expected": {
+      "http_status": 200,
+      "indication": "TOTAL-PASSED",
+      "sub_indication": null,
+      "code": "VALID",
+      "problem_code": null,
+      "warnings": [
+        "NO_SIGNER"
+      ]
+    }
+  },
+  {
+    "id": "D10",
+    "file_name": "encrypted.pdf",
+    "title_th": "PDF เข้ารหัส",
+    "scenario_th": "PDF เข้ารหัส ระบบปฏิเสธ (HTTP 422)",
+    "pages": 1,
+    "size_bytes": 98304,
+    "encrypted": true,
+    "sha256": "de009c284564da65f237320a8b092eb2841d3d3be783a29bad2eb7ed27dd2656",
+    "previews": [
+      "/previews/D10-p1.svg"
+    ],
+    "signature_fields": [],
+    "signatures": [],
+    "doc_timestamps": [],
+    "modification_after_last_signature": null,
+    "refs": [
+      "V10",
+      "V11"
+    ],
+    "expected": {
+      "http_status": 422,
+      "indication": null,
+      "sub_indication": null,
+      "code": null,
+      "problem_code": "ENCRYPTED_PDF",
+      "warnings": []
+    }
+  },
+  {
+    "id": "D11",
+    "file_name": "huge-250-pages.pdf",
+    "title_th": "PDF 250 หน้า",
+    "scenario_th": "เกิน 200 หน้า ระบบปฏิเสธ (HTTP 413)",
+    "pages": 250,
+    "size_bytes": 15728640,
+    "encrypted": false,
+    "sha256": "de00fa2802120b560f26e21f6600bb90d7970795aed0aa72c2462219b7de7183",
+    "previews": [
+      "/previews/D11-p1.svg",
+      "/previews/D11-p2.svg",
+      "/previews/D11-p3.svg"
+    ],
+    "signature_fields": [],
+    "signatures": [],
+    "doc_timestamps": [],
+    "modification_after_last_signature": null,
+    "refs": [
+      "V10"
+    ],
+    "expected": {
+      "http_status": 413,
+      "indication": null,
+      "sub_indication": null,
+      "code": null,
+      "problem_code": "PDF_TOO_LARGE",
+      "warnings": []
+    }
+  },
+  {
+    "id": "D12",
+    "file_name": "memo-130-unsigned.pdf",
+    "title_th": "บันทึกข้อความ 130 (ยังไม่เซ็น)",
+    "scenario_th": "ต้นฉบับสำหรับโต๊ะเซ็นเอกสาร ยังไม่มีลายเซ็น",
+    "pages": 2,
+    "size_bytes": 161792,
+    "encrypted": false,
+    "sha256": "de00c78f7e6f4d611a69dca5b3dfc756d6c64414a77daa4fbbdbb061e45cee0e",
+    "previews": [
+      "/previews/D12-p1.svg",
+      "/previews/D12-p2.svg"
+    ],
+    "signature_fields": [
+      "approver-1",
+      "approver-2"
+    ],
+    "signatures": [],
+    "doc_timestamps": [],
+    "modification_after_last_signature": null,
+    "refs": [
+      "S1"
+    ],
+    "expected": {
+      "http_status": 422,
+      "indication": null,
+      "sub_indication": null,
+      "code": null,
+      "problem_code": "NOT_SIGNED",
+      "warnings": []
+    }
+  }
+]

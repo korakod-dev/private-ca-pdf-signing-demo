@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcpsd:schema:personas",
+  "title": "personas.json (Persona[])",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["id", "display_name", "email", "role", "email_verified", "last_in_person_proofing", "home_route"],
+    "properties": {
+      "id": { "$ref": "urn:pcpsd:schema:common#/$defs/personaId" },
+      "display_name": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" },
+      "email": { "type": "string", "pattern": "^[a-z0-9.-]+@lab\\.korakod\\.dev$" },
+      "role": { "$ref": "urn:pcpsd:schema:common#/$defs/role" },
+      "email_verified": { "type": "boolean" },
+      "last_in_person_proofing": {
+        "anyOf": [{ "$ref": "urn:pcpsd:schema:common#/$defs/instant" }, { "type": "null" }]
+      },
+      "home_route": { "type": "string", "pattern": "^/" }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+[
+  {
+    "id": "root-2026",
+    "subject": "CN=Korakod Lab DEMO Root CA 2026",
+    "serial": "DE:M0:00:00:00:01",
+    "not_before": "2026-10-01T09:00:00+07:00",
+    "not_after": "2041-10-01T09:00:00+07:00",
+    "usage_until": null,
+    "key_alg": "ECDSA P-384",
+    "status_note_th": "ออฟไลน์ (จำลอง)",
+    "fingerprint_sha256": "DE:M0:7A:C3:A1:0F:B4:EA:03:30:05:C8:F7:9E:73:5C:FA:09:C5:EC:BB:44:09:85:EC:D9:56:95:FF:45:19:BE",
+    "extensions": [
+      "basicConstraints: CA (critical)",
+      "keyUsage: keyCertSign, cRLSign (critical)"
+    ]
+  },
+  {
+    "id": "doc-signing-2026",
+    "subject": "CN=Korakod Lab DEMO Document Signing CA 2026",
+    "serial": "DE:M0:00:00:00:02",
+    "not_before": "2026-10-01T09:00:00+07:00",
+    "not_after": "2032-10-01T09:00:00+07:00",
+    "usage_until": "2030-10-01T09:00:00+07:00",
+    "key_alg": "ECDSA P-384",
+    "status_note_th": "อยู่ใน SoftHSM2 (จำลอง) · ออกใบผู้ใช้ได้ถึง 2030-10-01",
+    "fingerprint_sha256": "DE:M0:73:6E:50:BD:25:AF:78:E2:30:15:42:4B:9E:A0:84:D4:2B:25:5E:5F:80:72:8C:47:05:D9:F0:5D:D6:71",
+    "extensions": [
+      "basicConstraints: CA, pathLen 0 (critical)",
+      "keyUsage: keyCertSign, cRLSign (critical)"
+    ]
+  },
+  {
+    "id": "tsa-2026",
+    "subject": "CN=Korakod Lab DEMO TSA 2026, C=TH",
+    "serial": "DE:M0:00:00:00:03",
+    "not_before": "2026-10-01T09:00:00+07:00",
+    "not_after": "2033-10-01T09:00:00+07:00",
+    "usage_until": "2028-10-01T09:00:00+07:00",
+    "key_alg": "ECDSA P-256",
+    "status_note_th": "ใช้งานถึง 2028-10-01",
+    "fingerprint_sha256": "DE:M0:38:5E:12:52:E5:B9:AE:C9:2F:92:9D:28:8F:92:BF:35:63:41:24:F4:85:5B:D5:63:A0:85:26:8D:F9:C4",
+    "extensions": [
+      "extendedKeyUsage: timeStamping (critical)"
+    ]
+  },
+  {
+    "id": "ocsp-signer",
+    "subject": "CN=Korakod Lab DEMO OCSP Signer",
+    "serial": "DE:M0:0C:SP:01",
+    "not_before": "2026-11-12T09:00:00+07:00",
+    "not_after": "2026-12-12T09:00:00+07:00",
+    "usage_until": null,
+    "key_alg": "ECDSA P-256",
+    "status_note_th": "หมุนทุก 14 วัน อายุ 30 วัน (ตัวที่ใช้ ณ เวลาเริ่มต้น)",
+    "fingerprint_sha256": "DE:M0:B8:D5:49:A5:97:65:FE:11:33:09:F8:25:2D:ED:32:E0:AA:D1:EC:D1:E5:6A:A1:1C:50:65:4B:E8:D6:E8",
+    "extensions": [
+      "extendedKeyUsage: OCSPSigning",
+      "id-pkix-ocsp-nocheck"
+    ]
+  },
+  {
+    "id": "validation-2026",
+    "subject": "CN=Korakod Lab DEMO Validation Service",
+    "serial": "DE:M0:00:00:00:05",
+    "not_before": "2026-10-01T09:00:00+07:00",
+    "not_after": "2027-10-01T09:00:00+07:00",
+    "usage_until": null,
+    "key_alg": "ECDSA P-256",
+    "status_note_th": "เซ็นรายงานผลตรวจ (จำลอง)",
+    "fingerprint_sha256": "DE:M0:95:3F:3E:80:D2:D0:F2:FE:58:5C:30:53:6E:C9:E7:BD:34:8B:0C:10:B7:F3:97:B8:51:62:9D:B1:F6:CA",
+    "extensions": [
+      "keyUsage: digitalSignature (critical)"
+    ]
+  },
+  {
+    "id": "tsa-2028",
+    "subject": "CN=Korakod Lab DEMO TSA 2028, C=TH",
+    "serial": "DE:M0:00:00:00:13",
+    "not_before": "2028-09-01T09:00:00+07:00",
+    "not_after": "2035-09-01T09:00:00+07:00",
+    "usage_until": "2030-09-01T09:00:00+07:00",
+    "key_alg": "ECDSA P-256",
+    "status_note_th": "TSA ตัวถัดไป (ใช้ประทับซ้ำ)",
+    "fingerprint_sha256": "DE:M0:B7:54:6E:CE:82:84:36:7C:50:64:CC:73:F2:A1:7D:FF:A7:14:73:D9:0C:22:D2:F7:4D:A4:4E:10:FC:2D",
+    "extensions": [
+      "extendedKeyUsage: timeStamping (critical)"
+    ]
+  },
+  {
+    "id": "tsa-2030",
+    "subject": "CN=Korakod Lab DEMO TSA 2030, C=TH",
+    "serial": "DE:M0:00:00:00:23",
+    "not_before": "2030-08-01T09:00:00+07:00",
+    "not_after": "2037-08-01T09:00:00+07:00",
+    "usage_until": "2032-08-01T09:00:00+07:00",
+    "key_alg": "ECDSA P-256",
+    "status_note_th": "TSA ตัวถัดไป (ใช้ประทับซ้ำ)",
+    "fingerprint_sha256": "DE:M0:FD:54:04:63:B5:E3:C6:FA:F9:10:A3:04:D7:A1:94:4D:29:7E:4F:83:3D:A4:3D:BC:56:E1:02:C8:56:64",
+    "extensions": [
+      "extendedKeyUsage: timeStamping (critical)"
+    ]
+  }
+]

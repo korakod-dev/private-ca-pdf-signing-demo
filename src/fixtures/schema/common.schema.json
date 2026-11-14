@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcpsd:schema:common",
+  "title": "Shared definitions for the fixture schemas (mirrors src/contracts/fixtures.ts)",
+  "$defs": {
+    "instant": {
+      "description": "ISO 8601 instant with the fixed +07:00 offset (Instant in the contract).",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d\\+07:00$"
+    },
+    "demoSerial": {
+      "description": "Serial of a demo CA/TSA/OCSP/user certificate. DE:M0 marks it as fake; pairs are 0-9A-Z (the OCSP signer uses 'SP').",
+      "type": "string",
+      "pattern": "^DE:M0(:[0-9A-Z]{2})+$"
+    },
+    "certSerial": {
+      "description": "Demo serial, or the single allow-listed untrusted serial '01' (D06 self-signed cert). Whether '01' is legal for a given cert is enforced in certs.schema.json (needs untrusted_fixture: true).",
+      "anyOf": [{ "$ref": "#/$defs/demoSerial" }, { "const": "01" }]
+    },
+    "fingerprint": {
+      "description": "Fake SHA-256 fingerprint: DE:M0 followed by 30 more pairs = 32 colon-separated pairs.",
+      "type": "string",
+      "pattern": "^DE:M0(:[0-9A-Z]{2}){30}$"
+    },
+    "docSha256": {
+      "description": "Fake document hash: 'de00' marker + 60 lowercase hex characters (assumption A24).",
+      "type": "string",
+      "pattern": "^de00[0-9a-f]{60}$"
+    },
+    "personaId": {
+      "enum": ["u-somchai", "u-wipawan", "u-nattapon", "u-aree", "u-manop", "u-guest", "a-admin-a", "a-admin-b"]
+    },
+    "role": { "enum": ["signer", "new_user", "user", "verifier", "admin-a", "admin-b"] },
+    "caId": { "enum": ["root-2026", "doc-signing-2026", "tsa-2026", "ocsp-signer", "validation-2026", "tsa-2028", "tsa-2030"] },
+    "revocationReason": {
+      "enum": ["unspecified", "keyCompromise", "affiliationChanged", "superseded", "cessationOfOperation", "privilegeWithdrawn"]
+    },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "timestamp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["time", "tsa_serial"],
+      "properties": {
+        "time": { "$ref": "#/$defs/instant" },
+        "tsa_serial": { "$ref": "#/$defs/demoSerial" }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pcpsd:schema:pki",
+  "title": "pki.json (CaFixture[])",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["id", "subject", "serial", "not_before", "not_after", "usage_until", "key_alg", "status_note_th", "fingerprint_sha256", "extensions"],
+    "properties": {
+      "id": { "$ref": "urn:pcpsd:schema:common#/$defs/caId" },
+      "subject": { "type": "string", "pattern": "^CN=.*DEMO" },
+      "serial": { "$ref": "urn:pcpsd:schema:common#/$defs/demoSerial" },
+      "not_before": { "$ref": "urn:pcpsd:schema:common#/$defs/instant" },
+      "not_after": { "$ref": "urn:pcpsd:schema:common#/$defs/instant" },
+      "usage_until": {
+        "anyOf": [{ "$ref": "urn:pcpsd:schema:common#/$defs/instant" }, { "type": "null" }]
+      },
+      "key_alg": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" },
+      "status_note_th": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" },
+      "fingerprint_sha256": { "$ref": "urn:pcpsd:schema:common#/$defs/fingerprint" },
+      "extensions": { "type": "array", "items": { "$ref": "urn:pcpsd:schema:common#/$defs/nonEmptyString" } }
+    }
+  }
+}

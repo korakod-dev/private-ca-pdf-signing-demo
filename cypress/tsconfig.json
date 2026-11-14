@@ -1,0 +1,18 @@
+{
+  // Cypress specs and support files. They import src/contracts (TID, ROUTES) so selectors cannot drift.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": ["cypress", "node"]
+  },
+  "include": ["./**/*.ts", "../src/contracts/**/*.ts", "../src/config/demo.ts"]
+}

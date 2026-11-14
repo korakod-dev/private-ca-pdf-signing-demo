@@ -1,0 +1,15 @@
+# Build and test output
+node_modules/
+dist/
+coverage/
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Local env overrides (VITE_API_MODE / VITE_API_BASE)
+.env
+.env.*
+
+# macOS Finder metadata
+.DS_Store
+*.log

@@ -1,0 +1,2 @@
+/* Tailwind v4 entry. No web fonts and no external assets (CSP: style-src 'self', no third-party origins). */
+@import "tailwindcss";

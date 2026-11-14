@@ -1,0 +1,74 @@
+[
+  {
+    "id": "u-somchai",
+    "display_name": "สมชาย ใจดี",
+    "email": "somchai@lab.korakod.dev",
+    "role": "signer",
+    "email_verified": true,
+    "last_in_person_proofing": "2026-10-06T09:00:00+07:00",
+    "home_route": "/certs"
+  },
+  {
+    "id": "u-wipawan",
+    "display_name": "วิภาวรรณ ศรีสุข",
+    "email": "wipawan@lab.korakod.dev",
+    "role": "signer",
+    "email_verified": true,
+    "last_in_person_proofing": "2026-09-11T09:00:00+07:00",
+    "home_route": "/certs"
+  },
+  {
+    "id": "u-nattapon",
+    "display_name": "ณัฐพล ทองดี",
+    "email": "nattapon@lab.korakod.dev",
+    "role": "new_user",
+    "email_verified": true,
+    "last_in_person_proofing": null,
+    "home_route": "/certs/request"
+  },
+  {
+    "id": "u-aree",
+    "display_name": "อารีย์ มีสุข",
+    "email": "aree@lab.korakod.dev",
+    "role": "signer",
+    "email_verified": true,
+    "last_in_person_proofing": "2025-12-02T09:00:00+07:00",
+    "home_route": "/certs"
+  },
+  {
+    "id": "u-manop",
+    "display_name": "มานพ รักงาน",
+    "email": "manop@lab.korakod.dev",
+    "role": "user",
+    "email_verified": true,
+    "last_in_person_proofing": null,
+    "home_route": "/certs"
+  },
+  {
+    "id": "u-guest",
+    "display_name": "ผู้ตรวจทั่วไป",
+    "email": "guest@lab.korakod.dev",
+    "role": "verifier",
+    "email_verified": true,
+    "last_in_person_proofing": null,
+    "home_route": "/verify"
+  },
+  {
+    "id": "a-admin-a",
+    "display_name": "ผู้ดูแล A",
+    "email": "admin-a@lab.korakod.dev",
+    "role": "admin-a",
+    "email_verified": true,
+    "last_in_person_proofing": null,
+    "home_route": "/admin/requests"
+  },
+  {
+    "id": "a-admin-b",
+    "display_name": "ผู้ดูแล B",
+    "email": "admin-b@lab.korakod.dev",
+    "role": "admin-b",
+    "email_verified": true,
+    "last_in_person_proofing": null,
+    "home_route": "/admin/status"
+  }
+]
