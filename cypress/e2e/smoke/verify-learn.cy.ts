@@ -2,6 +2,7 @@
 // not-found. Every test runs at both viewports (1280 and 390) and passes axe (serious/critical).
 // Selectors come only from TID, paths only from ROUTES. Test mode (cy.visitDemo): frozen clock, no latency.
 import pki from '../../../src/fixtures/pki.json';
+import { FEEDBACK_URL } from '../../../src/config/demo';
 import { ROUTES } from '../../../src/contracts/routes';
 import { SESSION_STORAGE_KEY } from '../../../src/contracts/store';
 import { TID } from '../../../src/contracts/testids';
@@ -39,9 +40,14 @@ describe('verify-learn: static pages', () => {
     });
   });
 
-  it('about says feedback is not open yet', () => {
+  it('about shows the external feedback form link (new tab, noopener)', () => {
     cy.visitDemo(ROUTES.about);
-    cy.contains('ยังไม่เปิดรับความเห็น').should('be.visible');
+    cy.contains('a', 'ส่งความเห็น')
+      .should('be.visible')
+      .and('have.attr', 'href', FEEDBACK_URL)
+      .and('have.attr', 'target', '_blank')
+      .and('have.attr', 'rel', 'noopener noreferrer');
+    cy.contains('ลิงก์นี้พาไปที่ Google Form').should('be.visible');
   });
 
   it('policy shows four demo-labelled documents with collapsed technical details', () => {

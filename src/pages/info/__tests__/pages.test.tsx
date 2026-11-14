@@ -1,4 +1,4 @@
-// Home, About, Policy and NotFound pages, plus the feedback link rule (empty FEEDBACK_URL -> "ยังไม่เปิดรับความเห็น").
+// Home, About, Policy and NotFound pages, plus the feedback link rule (empty url -> "ยังไม่เปิดรับความเห็น", configured url -> external link).
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
@@ -19,6 +19,7 @@ import { HomePage } from '../../HomePage';
 import { NotFoundPage } from '../../NotFoundPage';
 import { PolicyPage } from '../../PolicyPage';
 import { FeedbackLink } from '../FeedbackLink';
+import { FEEDBACK_URL } from '../../../config/demo';
 
 const STATUS: ServiceStatusDto = {
   services: [
@@ -68,10 +69,15 @@ describe('AboutPage', () => {
     expect(screen.getByText(/ไม่มี analytics/)).toBeInTheDocument();
   });
 
-  it('says feedback is not open while FEEDBACK_URL is empty (the shipped default)', () => {
+  it('shows the configured feedback form link (external Google Form, new tab)', () => {
     inRouter(<AboutPage />);
-    expect(screen.getByText('ยังไม่เปิดรับความเห็น')).toBeInTheDocument();
-    expect(screen.queryByRole('link', { name: /ส่งความเห็น/ })).toBeNull();
+    expect(FEEDBACK_URL).toMatch(/^https:\/\/docs\.google\.com\/forms\/d\/e\/[\w-]+\/viewform$/); // clean URL, no query string
+    const link = screen.getByRole('link', { name: /ส่งความเห็น/ });
+    expect(link).toHaveAttribute('href', FEEDBACK_URL);
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(screen.getByText(/ลิงก์นี้พาไปที่ Google Form/)).toBeInTheDocument();
+    expect(screen.queryByText('ยังไม่เปิดรับความเห็น')).toBeNull();
   });
 });
 
@@ -89,6 +95,7 @@ describe('FeedbackLink', () => {
     expect(link).toHaveAttribute('href', 'https://forms.example/demo');
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     expect(link).toHaveAttribute('target', '_blank');
+    expect(screen.getByText(/ลิงก์นี้พาไปที่ Google Form/)).toBeInTheDocument();
   });
 });
 

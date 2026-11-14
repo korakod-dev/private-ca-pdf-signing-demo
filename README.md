@@ -5,7 +5,7 @@
 
 ## ภาษาไทย
 
-**สถานะ: พัฒนาครบทุกขั้นแล้ว (ขั้น 0 ถึงขั้น 3) เหลือคำถามปลายเปิดของโครงการ 7 ข้อด้านล่างที่ผู้ดูแลโครงการต้องตัดสินใจหรือตรวจ** เดโมนี้เป็นเว็บจำลองระบบเซ็น PDF ด้วย CA ส่วนตัว ทุกอย่างทำงานในเบราว์เซอร์ ไม่มี server ไม่มีกุญแจหรือลายเซ็นจริง (ยกเว้นจุดเดียว: hash chain ของ audit log คำนวณ SHA-256 จริงด้วย WebCrypto ในเบราว์เซอร์ ดูหัวข้อ "อะไรจำลอง อะไรไม่จำลอง")
+**สถานะ: พัฒนาครบทุกขั้นแล้ว (ขั้น 0 ถึงขั้น 3) เหลือคำถามปลายเปิดของโครงการ 5 ข้อด้านล่างที่ผู้ดูแลโครงการต้องตัดสินใจหรือตรวจ** เดโมนี้เป็นเว็บจำลองระบบเซ็น PDF ด้วย CA ส่วนตัว ทุกอย่างทำงานในเบราว์เซอร์ ไม่มี server ไม่มีกุญแจหรือลายเซ็นจริง (ยกเว้นจุดเดียว: hash chain ของ audit log คำนวณ SHA-256 จริงด้วย WebCrypto ในเบราว์เซอร์ ดูหัวข้อ "อะไรจำลอง อะไรไม่จำลอง")
 
 สิ่งที่ทำเสร็จแล้ว:
 - 17 หน้าตาม spec บวกหน้า "ไม่พบหน้านี้" ทุกหน้ามีแถบ "โหมดสาธิต" ที่ปิดไม่ได้
@@ -39,17 +39,18 @@
 
 ยกเว้น: hash chain ของ audit log คำนวณ SHA-256 จริงด้วย WebCrypto ในเบราว์เซอร์ (ปุ่ม "ตรวจ hash chain" คำนวณจริงหนึ่งจุด หน้า `/about` ของเดโมบอกไว้แล้ว ดู `src/lib/hashChain.ts`)
 
-### คำถามปลายเปิดของโครงการ (ยังไม่ได้ทำ และไม่ได้เดาค่าแทน ยกเว้นข้อ 7 ที่ผู้ดูแลโครงการอนุมัติค่าชั่วคราวไว้แล้ว)
+### คำถามปลายเปิดของโครงการ (ยังไม่ได้ทำ และไม่ได้เดาค่าแทน ยกเว้นข้อ 5 ที่ผู้ดูแลโครงการอนุมัติค่าชั่วคราวไว้แล้ว)
 1. **spec หลักไม่ได้เผยแพร่ใน repo นี้** (เป็นเอกสารภายในของผู้ดูแลโครงการ) และตอนวางแผนเดโมยังไม่มีให้ใช้ เดโมจึงใช้ "สมมติฐาน" 47 ข้อแทน (A1-A47 ใน `docs/adr/0003-assumptions.md`) ผู้ดูแลโครงการต้องเทียบกับ spec หลักเมื่อมี ข้อความที่ไม่ได้ตรวจกับมาตรฐานถูกทำเครื่องหมายไว้แล้ว (เช่น คำว่า "(จำลอง)" ในผลของ `pdfsign`)
 2. **วันที่ในข้อมูลจำลองขัดกันเอง (1):** ใบรับรองของวิภาวรรณและอารีย์เริ่มใช้ก่อนวันที่ CA เริ่มทำงาน (1 ต.ค. 2026) ตอนนี้ใช้ค่าตาม spec ไปก่อน ผู้ดูวันที่อย่างละเอียดอาจสังเกตเห็น
 3. **วันที่ในข้อมูลจำลองขัดกันเอง (2):** ตราประทับเวลาของเอกสาร D04, D05 และ D07 ลงวันที่ก่อน TSA เริ่มใช้งาน (TSA เริ่ม 1 ต.ค. 2026) ตอนนี้ engine ไม่ตรวจเรื่องนี้โดยตั้งใจ เพื่อให้ผลตรงตารางใน spec ทางแก้ (ย้ายวันเริ่มของ TSA หรือเพิ่ม TSA รุ่นก่อน) ผู้ดูแลโครงการต้องเลือก
-4. **ลิงก์ฟอร์มรับความเห็น** (spec ข้อ 9.5): ยังว่างอยู่ หน้า `/about` ขึ้นว่า "ยังไม่เปิดรับความเห็น" เมื่อได้ลิงก์ Google Form ให้ใส่ที่ `FEEDBACK_URL` ใน `src/config/demo.ts` (บรรทัดเดียว) แล้ว build ใหม่
-5. **การ deploy:** repo สาธารณะอยู่ที่ https://github.com/korakod-dev/private-ca-pdf-signing-demo และเดโมออนไลน์อยู่ที่ https://pki-demo.korakod.dev (Cloudflare Workers แบบ static assets) ไฟล์ CI (`.github/workflows/ci.yml`) รัน lint, typecheck, test, build และ e2e เท่านั้น ไม่มีงาน deploy ใน CI การ deploy ทำเองด้วยมือจากเครื่องของผู้ดูแล: รัน `npm run build` แล้วรัน `npx wrangler deploy` (อัปโหลดโฟลเดอร์ `dist` ตรง ๆ ตามค่าใน `wrangler.jsonc`) ไม่ได้ผูก Git กับ Cloudflare จึงไม่มีการ build อัตโนมัติเมื่อ push
-6. **ตรวจหน้าจอเทียบ mockup** (A20): ผู้พัฒนาเข้าถึงภาพ mockup ไม่ได้ จึงออกแบบหน้าจอจากข้อความใน spec อย่างเดียว ผู้ดูแลโครงการต้องเปิดดูเทียบกับ mockup แล้วระบุว่าตรงไหนต้องแก้
-7. **ค่าล็อกอินผิด 3 ครั้ง / 5 นาที** (spec ข้อ 9.8, A5): เป็นค่าชั่วคราวที่ผู้ดูแลโครงการอนุมัติแล้ว (13 พ.ย. 2026) ยังรอเทียบกับ มธอ. 11 เล่ม 3 ข้อ 4.2 ถ้าเอกสารนั้นกำหนดค่าอื่น ต้องแก้ค่าในเดโม
+4. **ตรวจหน้าจอเทียบ mockup** (A20): ผู้พัฒนาเข้าถึงภาพ mockup ไม่ได้ จึงออกแบบหน้าจอจากข้อความใน spec อย่างเดียว ผู้ดูแลโครงการต้องเปิดดูเทียบกับ mockup แล้วระบุว่าตรงไหนต้องแก้
+5. **ค่าล็อกอินผิด 3 ครั้ง / 5 นาที** (spec ข้อ 9.8, A5): เป็นค่าชั่วคราวที่ผู้ดูแลโครงการอนุมัติแล้ว (13 พ.ย. 2026) ยังรอเทียบกับ มธอ. 11 เล่ม 3 ข้อ 4.2 ถ้าเอกสารนั้นกำหนดค่าอื่น ต้องแก้ค่าในเดโม
 
 เรื่องเล็กที่ทราบแล้ว:
 - ช่องโหว่ระดับกลาง 7 รายการใน `typescript-eslint` (เครื่องมือตรวจโค้ดฝั่งนักพัฒนา ไม่ติดไปกับเว็บที่ผู้ใช้เปิด) แก้แล้วด้วยการบังคับเวอร์ชัน `minimatch` ใน `package.json` (`overrides`) ตอนนี้ `npm audit` ได้ 0 รายการ เมื่อ typescript-eslint ออกรุ่นที่แก้เองแล้ว ให้ลบ `overrides` ออก (ดู A46)
+
+### การ deploy (วิธีทำ ไม่ใช่งานค้าง)
+repo สาธารณะอยู่ที่ https://github.com/korakod-dev/private-ca-pdf-signing-demo และเดโมออนไลน์อยู่ที่ https://pki-demo.korakod.dev (Cloudflare Workers แบบ static assets) ไฟล์ CI (`.github/workflows/ci.yml`) รัน lint, typecheck, test, build และ e2e เท่านั้น ไม่มีงาน deploy ใน CI การ deploy ทำเองด้วยมือจากเครื่องของผู้ดูแล: รัน `npm run build` แล้วรัน `npx wrangler deploy` (อัปโหลดโฟลเดอร์ `dist` ตรง ๆ ตามค่าใน `wrangler.jsonc`) ไม่ได้ผูก Git กับ Cloudflare จึงไม่มีการ build อัตโนมัติเมื่อ push โดเมน pki-demo.korakod.dev ประกาศไว้ใน `wrangler.jsonc` (`routes`, `custom_domain: true`) Cloudflare จะสร้าง DNS และใบรับรองให้ตอน deploy ส่วนบัญชีมาจากการ login ของ wrangler ไม่ได้เก็บใน repo
 
 ### สัญญาอนุญาต (License)
 ใช้สัญญาอนุญาต MIT ดูไฟล์ `LICENSE` (ใครก็นำไปใช้ แก้ไข และแจกจ่ายต่อได้ โดยต้องเก็บข้อความลิขสิทธิ์ไว้)
@@ -109,7 +110,7 @@ src/engine/      pure simulation engine + verification resolver. No Date.now / M
 src/mocks/       MSW handlers; demo-only handlers in mocks/demo-only
 src/api/         API client (same calls for mock and live)
 src/app, src/pages, src/components, src/store, src/terminal, src/content   UI and Thai learner content (markdown)
-src/config/demo.ts   FEEDBACK_URL (empty until the maintainer supplies the form link)
+src/config/demo.ts   FEEDBACK_URL (external Google Form link shown on /about; form settings are outside the project's control; empty = "not open" state)
 cypress/         support commands (cy.visitDemo, cy.tid, cy.a11y, ...) and specs
 scripts/         check-fixtures, check-content, preview generation
 docs/adr/        stack, terminal component, assumption register
