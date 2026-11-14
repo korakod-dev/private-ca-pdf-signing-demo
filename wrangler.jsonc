@@ -1,0 +1,15 @@
+// Cloudflare Workers config: serves the built SPA (dist/) as static assets. Used only by a manual `npx wrangler deploy`.
+// Deliberately NOT here: account_id and routes/custom domain (bound in the Cloudflare dashboard, not in the repo).
+// `dist/_headers` (copied from public/_headers) is applied by Workers static assets.
+{
+  "name": "private-ca-pdf-signing-demo",
+  "compatibility_date": "2026-11-13",
+  "assets": {
+    "directory": "./dist",
+    // Unknown paths return index.html so client-side routes (React Router) work on a hard refresh.
+    "not_found_handling": "single-page-application"
+  },
+  // Serve only on the custom domain: no *.workers.dev URL and no per-version preview URLs.
+  "workers_dev": false,
+  "preview_urls": false
+}

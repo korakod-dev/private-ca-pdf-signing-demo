@@ -44,7 +44,7 @@
 2. **วันที่ในข้อมูลจำลองขัดกันเอง (1):** ใบรับรองของวิภาวรรณและอารีย์เริ่มใช้ก่อนวันที่ CA เริ่มทำงาน (1 ต.ค. 2026) ตอนนี้ใช้ค่าตาม spec ไปก่อน ผู้ดูวันที่อย่างละเอียดอาจสังเกตเห็น
 3. **วันที่ในข้อมูลจำลองขัดกันเอง (2):** ตราประทับเวลาของเอกสาร D04, D05 และ D07 ลงวันที่ก่อน TSA เริ่มใช้งาน (TSA เริ่ม 1 ต.ค. 2026) ตอนนี้ engine ไม่ตรวจเรื่องนี้โดยตั้งใจ เพื่อให้ผลตรงตารางใน spec ทางแก้ (ย้ายวันเริ่มของ TSA หรือเพิ่ม TSA รุ่นก่อน) ผู้ดูแลโครงการต้องเลือก
 4. **ลิงก์ฟอร์มรับความเห็น** (spec ข้อ 9.5): ยังว่างอยู่ หน้า `/about` ขึ้นว่า "ยังไม่เปิดรับความเห็น" เมื่อได้ลิงก์ Google Form ให้ใส่ที่ `FEEDBACK_URL` ใน `src/config/demo.ts` (บรรทัดเดียว) แล้ว build ใหม่
-5. **การ deploy:** repo สาธารณะอยู่ที่ https://github.com/korakod-dev/private-ca-pdf-signing-demo และเดโมออนไลน์อยู่ที่ https://pki-demo.korakod.dev (Cloudflare Pages) ไฟล์ CI (`.github/workflows/ci.yml`) รัน lint, typecheck, test, build และ e2e เท่านั้น ไม่มีงาน deploy ใน CI การ deploy ทำผ่าน Cloudflare Pages นอก CI
+5. **การ deploy:** repo สาธารณะอยู่ที่ https://github.com/korakod-dev/private-ca-pdf-signing-demo และเดโมออนไลน์อยู่ที่ https://pki-demo.korakod.dev (Cloudflare Workers แบบ static assets) ไฟล์ CI (`.github/workflows/ci.yml`) รัน lint, typecheck, test, build และ e2e เท่านั้น ไม่มีงาน deploy ใน CI การ deploy ทำเองด้วยมือจากเครื่องของผู้ดูแล: รัน `npm run build` แล้วรัน `npx wrangler deploy` (อัปโหลดโฟลเดอร์ `dist` ตรง ๆ ตามค่าใน `wrangler.jsonc`) ไม่ได้ผูก Git กับ Cloudflare จึงไม่มีการ build อัตโนมัติเมื่อ push
 6. **ตรวจหน้าจอเทียบ mockup** (A20): ผู้พัฒนาเข้าถึงภาพ mockup ไม่ได้ จึงออกแบบหน้าจอจากข้อความใน spec อย่างเดียว ผู้ดูแลโครงการต้องเปิดดูเทียบกับ mockup แล้วระบุว่าตรงไหนต้องแก้
 7. **ค่าล็อกอินผิด 3 ครั้ง / 5 นาที** (spec ข้อ 9.8, A5): เป็นค่าชั่วคราวที่ผู้ดูแลโครงการอนุมัติแล้ว (13 พ.ย. 2026) ยังรอเทียบกับ มธอ. 11 เล่ม 3 ข้อ 4.2 ถ้าเอกสารนั้นกำหนดค่าอื่น ต้องแก้ค่าในเดโม
 
@@ -124,7 +124,7 @@ docs/adr/        stack, terminal component, assumption register
 - Live mode (`VITE_API_MODE=live`) never imports `src/mocks`; `vite.config.ts` also deletes `mockServiceWorker.js` from `dist/`.
 - `package.json` `overrides` pins `minimatch ^11.0.1` under `@typescript-eslint/typescript-estree` (ADR 0003 A46);
   remove it when typescript-eslint ships a fixed dependency.
-- Deploy: the live demo is served from Cloudflare Pages at https://pki-demo.korakod.dev. CI (`.github/workflows/ci.yml`) has no deploy job; deploy happens outside CI.
+- Deploy: the live demo is served from Cloudflare Workers (static assets) at https://pki-demo.korakod.dev. CI (`.github/workflows/ci.yml`) has no deploy job; deploy happens outside CI. Deploy is a manual direct upload from a local machine: `npm run build` then `npx wrangler deploy` (settings in `wrangler.jsonc`; no Cloudflare Git integration, so a push does not trigger a build). Wrangler is not a project dependency; `npx` fetches it on demand. The account and the custom domain are set in the Cloudflare dashboard, not in the repo.
 
 ### License
 MIT, see `LICENSE`.

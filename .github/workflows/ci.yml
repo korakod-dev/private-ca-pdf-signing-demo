@@ -1,5 +1,5 @@
 # CI for private-ca-pdf-signing-demo.
-# CI runs lint, typecheck, tests, build and e2e on GitHub-hosted runners. Deploy is done via Cloudflare Pages outside CI.
+# CI runs lint, typecheck, tests, build and e2e on GitHub-hosted runners. Deploy is done manually (`npx wrangler deploy`, Cloudflare Workers static assets) outside CI.
 # Action versions: major tags checked against the latest GitHub releases on 2026-11-13 (not pinned to SHAs).
 name: ci
 
@@ -53,4 +53,4 @@ jobs:
             cypress/videos
           if-no-files-found: ignore
 
-  # No deploy job on purpose: deploy is done via Cloudflare Pages outside CI.
+  # No deploy job on purpose: deploy is done manually (`npx wrangler deploy`, Cloudflare Workers static assets) outside CI.
