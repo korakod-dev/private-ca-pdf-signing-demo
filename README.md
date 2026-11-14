@@ -124,7 +124,7 @@ docs/adr/        stack, terminal component, assumption register
 - Live mode (`VITE_API_MODE=live`) never imports `src/mocks`; `vite.config.ts` also deletes `mockServiceWorker.js` from `dist/`.
 - `package.json` `overrides` pins `minimatch ^11.0.1` under `@typescript-eslint/typescript-estree` (ADR 0003 A46);
   remove it when typescript-eslint ships a fixed dependency.
-- Deploy: the live demo is served from Cloudflare Workers (static assets) at https://pki-demo.korakod.dev. CI (`.github/workflows/ci.yml`) has no deploy job; deploy happens outside CI. Deploy is a manual direct upload from a local machine: `npm run build` then `npx wrangler deploy` (settings in `wrangler.jsonc`; no Cloudflare Git integration, so a push does not trigger a build). Wrangler is not a project dependency; `npx` fetches it on demand. The account and the custom domain are set in the Cloudflare dashboard, not in the repo.
+- Deploy: the live demo is served from Cloudflare Workers (static assets) at https://pki-demo.korakod.dev. CI (`.github/workflows/ci.yml`) has no deploy job; deploy happens outside CI. Deploy is a manual direct upload from a local machine: `npm run build` then `npx wrangler deploy` (settings in `wrangler.jsonc`; no Cloudflare Git integration, so a push does not trigger a build). Wrangler is not a project dependency; `npx` fetches it on demand. The custom domain is declared in `wrangler.jsonc` (`routes`, `custom_domain: true`); the account comes from the logged-in wrangler session, not the repo.
 
 ### License
 MIT, see `LICENSE`.
