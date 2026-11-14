@@ -75,15 +75,19 @@ describe('verify-learn: /verify', () => {
       cy.tid(TID.result.reportPreview).should('contain.text', 'DEMO — ไม่ใช่ผลตรวจจริง');
       // F25: `contain.text` also passes when the text is cropped, so check the geometry: the rotated watermark text (SVG
       // text bounding box in viewport coordinates) lies fully inside the watermarked block, at 1280 and 390 px.
+      // Font-independent: no hard-coded margin. The only reference is the block's own box (the SVG fills it), with a small
+      // tolerance for sub-pixel rounding; the Linux CI font (wider than macOS) must not change the outcome, which the
+      // component guarantees with `textLength` (fixed drawn width) instead of relying on font metrics.
+      const TOLERANCE_PX = 2;
       cy.tid(TID.result.reportPreview).find('[data-testid="watermark"]').scrollIntoView();
       cy.tid(TID.result.reportPreview).find('[data-testid="watermark"]').should(($block) => {
         const box = $block[0]!.getBoundingClientRect();
         const text = $block.find('[data-testid="watermark-text"]')[0]!.getBoundingClientRect();
         expect(text.width, 'watermark text is drawn').to.be.greaterThan(50);
-        expect(text.left, 'text left edge').to.be.gte(box.left - 0.5);
-        expect(text.right, 'text right edge').to.be.lte(box.right + 0.5);
-        expect(text.top, 'text top edge').to.be.gte(box.top - 0.5);
-        expect(text.bottom, 'text bottom edge').to.be.lte(box.bottom + 0.5);
+        expect(text.left, 'text left edge').to.be.gte(box.left - TOLERANCE_PX);
+        expect(text.right, 'text right edge').to.be.lte(box.right + TOLERANCE_PX);
+        expect(text.top, 'text top edge').to.be.gte(box.top - TOLERANCE_PX);
+        expect(text.bottom, 'text bottom edge').to.be.lte(box.bottom + TOLERANCE_PX);
       });
       cy.a11y();
     });

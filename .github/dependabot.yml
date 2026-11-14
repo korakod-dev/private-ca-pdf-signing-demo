@@ -5,6 +5,10 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # Only minor/patch PRs are proposed automatically; major bumps (typescript, cypress, eslint, ...) are done by hand.
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:

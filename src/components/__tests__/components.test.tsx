@@ -31,6 +31,14 @@ describe('Watermark (F25)', () => {
     expect(svg).toHaveAttribute('aria-hidden', 'true');
     expect(svg?.getAttribute('preserveAspectRatio')).toBe('xMidYMid meet');
   });
+
+  it('fixes the drawn text width (textLength) so a wider fallback font (Linux CI) cannot overflow the viewBox', () => {
+    render(<Watermark>เนื้อหา</Watermark>);
+    const text = screen.getByTestId('watermark-text');
+    expect(Number(text.getAttribute('textLength'))).toBeGreaterThan(0);
+    expect(Number(text.getAttribute('textLength'))).toBeLessThan(400); // viewBox width
+    expect(text.getAttribute('lengthAdjust')).toBe('spacingAndGlyphs');
+  });
 });
 
 describe('LayeredContent (F29)', () => {
